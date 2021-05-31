@@ -1,0 +1,51 @@
+public class Server{
+public void connect(){
+try{
+ServerSocket serverSocket = new ServerSocket(8000);
+System.out.println("Server is listening...");
+Socket socket = serverSocket.accept();
+DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+DataOutputStream dataOuputStream = new DataOuputStream(socket.getOutputStream());
+String original = dataInputStream.readUTF();
+String reverse = new StringBuilder(original).reverse().toString();
+dataOutputStream.writeUTF(reverse);
+dataOutputStream.close();
+dataInputStream.close();
+serverSocket.close();
+socket.close();
+}
+}
+}
+
+public class Client{
+public void connect(){
+try{
+Socket socket = new Socket("localhost",8000);
+System.out.println("Server is listening...");
+Socket socket = serverSocket.accept();
+DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+DataOutputStream dataOuputStream = new DataOuputStream(socket.getOutputStream());
+dataOutputStream.writeUTF("salam");
+System.out.println(dataOutputStream.readUTF()+"");
+
+String original = dataInputStream.readUTF();
+//String reverse = new StringBuilder(original).reverse().toString();
+//dataOutputStream.writeUTF(reverse);
+dataOutputStream.close();
+dataInputStream.close();
+socket.close();
+}catch(IOException e){
+e.printStackTrace();
+}
+}
+}
+
+
+
+
+
+
+
+
+
+
